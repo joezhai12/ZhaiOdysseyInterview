@@ -8,5 +8,10 @@ int main(){
     m.print();
     m(1,1) = 1;
     m.print();
+
+    Matrix<int> m2;
+    m2 = m;
+    m2.print();
+
     return 0;
 }

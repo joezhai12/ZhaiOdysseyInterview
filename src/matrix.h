@@ -35,8 +35,8 @@ public:
     
 private:
     // n x m Matrix
-    const unsigned int n;
-    const unsigned int m;
+    unsigned int n;
+    unsigned int m;
     std::vector< std::vector<T> > data;
 
 };
