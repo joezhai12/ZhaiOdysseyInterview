@@ -5,13 +5,14 @@ int main(){
     std::cout << "Hello" << std::endl;
     Matrix<int> m(3,3);
     // Matrix<int> m;
-    m.print();
+    // m.print();
+    std::cout << "m =" << std::endl << m << std::endl;
     m(1,1) = 1;
-    m.print();
+    std::cout << "m =" << std::endl << m << std::endl;
 
     Matrix<int> m2;
     m2 = m;
-    m2.print();
+    std::cout << "m2 =" << std::endl << m2 << std::endl;
 
     return 0;
 }

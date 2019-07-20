@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <vector>
+#include <iostream>
 
 template <class T>
 class Matrix{
@@ -20,10 +21,6 @@ public:
     // NOTE: return indexed by 1 (REQ)
     T& operator() (unsigned int i, unsigned int j);
 
-    // assignment
-    // = overload
-
-
     // addition
     // Matrix operator + (const Matrix&);
     // Matrix operator - (const Matrix&);
@@ -31,8 +28,15 @@ public:
     // // multiplication
     // Matrix operator * (const Matrix&);
 
-    void print();
-    
+    friend std::ostream& operator<< (std::ostream& os, Matrix& mat){
+        for(int i = 0; i < mat.n; ++i){
+            for(int j = 0; j < mat.m; ++j){
+                os << mat.data[i][j] << "\t";
+            }
+            os << std::endl;
+        }
+        return os;
+    }
 private:
     // n x m Matrix
     unsigned int n;

@@ -68,18 +68,10 @@ T& Matrix<T>::operator() (unsigned int i, unsigned int j){
 }
 
 /*
- * Print for debug
+ * Operator+
  */
-template <class T>
-void Matrix<T>::print(){
-    std::cout << "------------" << std::endl;
-    for(int i = 0; i < data.size(); ++i){
-        for(int j = 0; j < data[i].size(); ++j){
-            std::cout << data[i][j] << "\t";
-        }
-        std::cout << std::endl;
-    }
-    std::cout << "------------" << std::endl;
-}
+// template <class T>
+// Matrix
+
 
 #endif
