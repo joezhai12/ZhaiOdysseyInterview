@@ -20,7 +20,7 @@ Matrix<T>::Matrix():
  * Constructor
  */
 template <class T>
-Matrix<T>::Matrix(unsigned int rows, unsigned int cols):
+Matrix<T>::Matrix(size_t rows, size_t cols):
     n(rows),
     m(cols)
 {
@@ -50,12 +50,10 @@ Matrix<T>::Matrix(const Matrix<T>& other):
     n(other.n),
     m(other.m)
 {
-    for(int i = 0; i < other.size(); ++i){
-        std::vector<T> v;
-        for(int j = 0; j < other[i].size(); ++j){
-            v.push_back(other[i][j]);
+    for(int i = 0; i < other.n; ++i){
+        for(int j = 0; j < other.m; ++j){
+            this->data[i][j] = other.data[i][j];
         }
-        data.push_back(v);
     }
 }
 
@@ -63,15 +61,34 @@ Matrix<T>::Matrix(const Matrix<T>& other):
  * Operator()
  */
 template <class T>
-T& Matrix<T>::operator() (unsigned int i, unsigned int j){
+T& Matrix<T>::operator() (size_t i, size_t j){
     return data[i-1][j-1];
 }
 
 /*
  * Operator+
  */
-// template <class T>
-// Matrix
+template <class T>
+Matrix<T> Matrix<T>::operator+ (const Matrix<T>& other){
+    // if(this->size() != other.size()){
+    //     throw "Cannot add matrices of different sizes";
+    // }
+    Matrix<T> res(this->n, this->m);
+    for(int i = 0; i < this->n; ++i){
+        for(int j = 0; j < this->m; ++j){
+            res.data[i][j] = this->data[i][j] + other.data[i][j];
+        }
+    }
+    return res;
+}
+
+/*
+ * Size
+ */
+template <class T>
+std::pair<size_t, size_t> Matrix<T>::size(){
+    return(std::make_pair(this->n,this->m));
+}
 
 
 #endif

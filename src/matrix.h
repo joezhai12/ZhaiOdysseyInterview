@@ -9,24 +9,24 @@ class Matrix{
 public:
     // constructors
     Matrix(); // creates empty matrix object
-    Matrix(unsigned int rows, unsigned int cols); // creates zero matrix of size rows x cols
+    Matrix(size_t rows, size_t cols); // creates zero matrix of size rows x cols
 
     // destructor
     ~Matrix();
 
     // copy constructor
-    Matrix(const Matrix<T>&);
+    Matrix(const Matrix<T>& other);
 
     // operator()
     // NOTE: return indexed by 1 (REQ)
-    T& operator() (unsigned int i, unsigned int j);
+    T& operator() (size_t i, size_t j);
 
     // addition
-    // Matrix operator + (const Matrix&);
-    // Matrix operator - (const Matrix&);
+    Matrix<T> operator+ (const Matrix<T>& other);
+    // Matrix operator - (const Matrix<T>& other);
 
     // // multiplication
-    // Matrix operator * (const Matrix&);
+    // Matrix operator * (const Matrix<T>& other);
 
     friend std::ostream& operator<< (std::ostream& os, Matrix& mat){
         for(int i = 0; i < mat.n; ++i){
@@ -37,10 +37,13 @@ public:
         }
         return os;
     }
+
+    std::pair<size_t, size_t> size();
+
 private:
     // n x m Matrix
-    unsigned int n;
-    unsigned int m;
+    size_t n;
+    size_t m;
     std::vector< std::vector<T> > data;
 
 };
