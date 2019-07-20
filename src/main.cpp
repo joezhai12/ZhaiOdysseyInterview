@@ -6,7 +6,7 @@ int main(){
     Matrix<int> m(3,3);
     // Matrix<int> m;
     m.print();
-    m[1][1] = 1;
+    m(1,1) = 1;
     m.print();
     return 0;
 }

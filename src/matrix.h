@@ -16,9 +16,9 @@ public:
     // copy constructor
     Matrix(const Matrix<T>&);
 
-    // operator[]
-    // NOTE: return indexed by 1
-    std::vector<T>& operator[] (unsigned int i);
+    // operator()
+    // NOTE: return indexed by 1 (REQ)
+    T& operator() (unsigned int i, unsigned int j);
 
     // assignment
     // = overload

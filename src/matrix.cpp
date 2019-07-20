@@ -60,11 +60,11 @@ Matrix<T>::Matrix(const Matrix<T>& other):
 }
 
 /*
- * Operator []
+ * Operator()
  */
 template <class T>
-std::vector<T>& Matrix<T>::operator[] (unsigned int i){
-    return data[i-1];
+T& Matrix<T>::operator() (unsigned int i, unsigned int j){
+    return data[i-1][j-1];
 }
 
 /*
