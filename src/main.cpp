@@ -55,6 +55,7 @@ int main(){
     Matrix<int> m5 = (3*m3);
 
     std::cout << m5 << std::endl;
+    std::cout << (m5 - m3) << std::endl;
 
     return 0;
 }

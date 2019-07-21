@@ -99,6 +99,39 @@ Matrix<T>& Matrix<T>::operator+= (const Matrix<T>& other){
 }
 
 /*
+ * Operator-
+ */
+template <class T>
+Matrix<T> Matrix<T>::operator- (const Matrix<T>& other){
+    if(this->n != other.n || this->m != other.m){
+        throw "Cannot subtract matrices of different sizes";
+    }
+    Matrix<T> res(this->n, this->m);
+    for(int i = 0; i < this->n; ++i){
+        for(int j = 0; j < this->m; ++j){
+            res.data[i][j] = this->data[i][j] - other.data[i][j];
+        }
+    }
+    return res;
+}
+
+/*
+ * Operator-=
+ */
+template <class T>
+Matrix<T>& Matrix<T>::operator-= (const Matrix<T>& other){
+    if(this->n != other.n || this->m != other.m){
+        throw "Cannot add matrices of different sizes";
+    }
+    for(int i = 0; i < this->n; ++i){
+        for(int j = 0; j < this->m; ++j){
+            this->data[i][j] -= other.data[i][j];
+        }
+    }
+    return *this;
+}
+
+/*
  * Operator * (Scalar)
  */
 template <class T>
