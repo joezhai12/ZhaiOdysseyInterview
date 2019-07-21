@@ -131,16 +131,49 @@ void Test_Scalar_Multiplication(const size_t ROWS, const size_t COLS){
     }
 }
 
+void Test_Transpose(const size_t ROWS, const size_t COLS){
+    Matrix<float> m(ROWS,COLS);
+    Matrix<float> m_T(COLS,ROWS);
+
+    //populate m
+    for(int i = 1; i <= ROWS; ++i){
+        for(int j = 1; j <= COLS; ++j){
+            m(i,j) = (i-1) * COLS + j;
+        }
+    }
+    m.Transpose();
+    // std::cout << m << std::endl;
+    //populate m_T
+    for(int i = 1; i <= COLS; ++i){
+        for(int j = 1; j <= ROWS; ++j){
+            m_T(i,j) = (j-1) * COLS + i;
+        }
+    }
+    // std::cout << m_T << std::endl;
+    if(m == m_T){
+        ++passes;
+    }
+    else{
+        std::cout << "Transpose Test Failed!" << std::endl;
+        ++fails;
+    }
+}
+
 int main(){
+    std::srand(time(NULL));
+    const size_t MAX_DIM = 1000;
+
     std::cout << "Testing..." << std::endl;
 
-    Test_Addition(3,4);
+    Test_Addition(std::rand() % MAX_DIM + 1, std::rand() % MAX_DIM + 1);
     Test_Addition(0,0);
-    Test_Subtraction(7,6);
+    Test_Subtraction(std::rand() % MAX_DIM + 1, std::rand() % MAX_DIM + 1);
     Test_Subtraction(0,0);
     Test_Matrix_Multiplication();
-    Test_Scalar_Multiplication(4,5);
+    Test_Scalar_Multiplication(std::rand() % MAX_DIM + 1, std::rand() % MAX_DIM + 1);
     Test_Scalar_Multiplication(0,0);
+    Test_Transpose(std::rand() % MAX_DIM + 1, std::rand() % MAX_DIM + 1);
+    Test_Transpose(0,0);
 
     std::cout << "Total Tests Passed: " << passes << std::endl;
     std::cout << "Total Tests Failed: " << fails << std::endl;
