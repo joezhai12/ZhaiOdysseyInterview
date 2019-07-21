@@ -56,7 +56,9 @@ public:
         return os;
     }
 
-    std::pair<size_t, size_t> size();
+    inline std::pair<size_t, size_t> size();
+    inline size_t rows();
+    inline size_t cols();
 
 private:
     // n x m Matrix

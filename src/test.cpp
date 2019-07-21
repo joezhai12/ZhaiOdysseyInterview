@@ -3,74 +3,51 @@
 #include <time.h>
 #include <stdlib.h>
 
-// template <class T>
-// bool CheckValue(const Matrix<T>& a, const Matrix<T>& b){
-//     if(a == b){
-//         return true;
-//     }
-//     return false;
-// }
+static int passes = 0;
+static int fails = 0;
+
+void Test_Addition(){
+    const int ROWS = 3;
+    const int COLS = 4;
+
+    Matrix<int> m1(ROWS, COLS);
+    Matrix<int> m2(ROWS, COLS);
+    
+    //populate m1
+    for(int i = 1; i <= ROWS; ++i){
+        for(int j = 1; j <= COLS; ++j){
+            m1(i,j) = (i-1) * ROWS + j;
+        }
+    }
+    // std::cout << m1 << std::endl;
+    //populate m2
+    for(int i = 1; i <= ROWS; ++i){
+        for(int j = 1; j <= COLS; ++j){
+            m2(i,j) = -((i-1) * ROWS + j);
+        }
+    }
+    // std::cout << m2 << std::endl;
+
+    Matrix<int> zeros(ROWS, COLS);
+
+    if(zeros == (m1 + m2)){
+        ++passes;
+    }
+    else{
+        std::cout << "Addition Test Failed!" << std::endl;
+        ++fails;
+    }
+
+}
 
 int main(){
     std::srand(time(NULL));
-
     std::cout << "Testing..." << std::endl;
-    // Matrix<int> m(3,3);
-    // // Matrix<int> m;
-    // // m.print();
-    // std::cout << "m = " << m.size().first << " x " << m.size().second << std::endl;
-    // std::cout << m << std::endl;
-    // m(1,1) = 1;
-    // std::cout << "m = " << m.size().first << " x " << m.size().second << std::endl;
-    // std::cout << m << std::endl;
 
-    // Matrix<int> m2;
-    // m2 = m;
-    // std::cout << "m2 = " << m.size().first << " x " << m.size().second << std::endl;
-    // std::cout << m2 << std::endl;
+    Test_Addition();
 
-    // m = m + m2;
-
-    // std::cout << "m + m2 = " << std::endl;
-    // std::cout << m << std::endl;
-
-    // m += m2;
-    // std::cout << "m += m2 " << std::endl;
-    // std::cout << m << std::endl;
-
-    Matrix<int> m3(3,4);
-    Matrix<int> m4(4,2);
-
-    for(int i = 1; i <= m3.size().first; ++i){
-        for(int j = 1; j <= m3.size().second; ++j){
-            m3(i,j) = std::rand() % 50;
-        }
-    }
-
-    for(int i = 1; i <= m4.size().first; ++i){
-        for(int j = 1; j <= m4.size().second; ++j){
-            m4(i,j) = std::rand() % 50;
-        }
-    }
-
-    std::cout << m3 << std::endl;
-    std::cout << m4 << std::endl;
-    std::cout << (m3 * m4) << std::endl;
-
-    m3 *= 2;
-    std::cout << m3 << std::endl;
-
-    Matrix<int> m5 = (3*m3);
-
-    std::cout << m5 << std::endl;
-    std::cout << (m5 - m3) << std::endl;
-
-    m5.Transpose();
-
-    std::cout << m5 << std::endl;
-
-    std::cout << (m3 == m5) << std::endl;
-    std::cout << (m3 != m5) << std::endl;
+    std::cout << "Total Tests Passed: " << passes << std::endl;
+    std::cout << "Total Tests Failed: " << fails << std::endl;
 
     return 0;
 }

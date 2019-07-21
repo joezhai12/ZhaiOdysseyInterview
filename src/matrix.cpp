@@ -225,9 +225,24 @@ Matrix<T>& Matrix<T>::Transpose(){
  * Size
  */
 template <class T>
-std::pair<size_t, size_t> Matrix<T>::size(){
+inline std::pair<size_t, size_t> Matrix<T>::size(){
     return(std::make_pair(this->n,this->m));
 }
 
+/*
+ * Rows
+ */
+template <class T>
+inline size_t Matrix<T>::rows(){
+    return this->n;
+}
+
+/*
+ * Columns
+ */
+template <class T>
+inline size_t Matrix<T>::cols(){
+    return this->m;
+}
 
 #endif
