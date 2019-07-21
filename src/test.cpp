@@ -69,5 +69,8 @@ int main(){
 
     std::cout << m5 << std::endl;
 
+    std::cout << (m3 == m5) << std::endl;
+    std::cout << (m3 != m5) << std::endl;
+
     return 0;
 }

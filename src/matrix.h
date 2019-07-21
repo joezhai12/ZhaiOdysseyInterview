@@ -17,6 +17,10 @@ public:
     // copy constructor
     Matrix(const Matrix<T>& other);
 
+    // equality operator
+    bool operator== (const Matrix<T>& other);
+    bool operator!= (const Matrix<T>& other);
+
     // operator()
     // used to access element (i,j) of matrix
     // NOTE: return indexed by 1 (REQ)
