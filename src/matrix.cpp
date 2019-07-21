@@ -202,7 +202,6 @@ Matrix<T>& Matrix<T>::Transpose(){
     return *this;
 }
 
-
 /*
  * Size
  */
