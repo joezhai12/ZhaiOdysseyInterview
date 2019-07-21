@@ -159,11 +159,7 @@ Matrix<T> Matrix<T>::operator* (const T& scalar){
  */
 template <class T>
 Matrix<T>& Matrix<T>::operator*= (const T& scalar){
-    for(int i = 0; i < this->n; ++i){
-        for(int j = 0; j < this->m; ++j){
-            this->data[i][j] *= scalar;
-        }
-    }
+    *this = *this * scalar;
     return (*this);
 }
 
