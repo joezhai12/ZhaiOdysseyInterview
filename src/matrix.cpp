@@ -110,14 +110,7 @@ Matrix<T> Matrix<T>::operator+ (const Matrix<T>& other){
  */
 template <class T>
 Matrix<T>& Matrix<T>::operator+= (const Matrix<T>& other){
-    if(this->n != other.n || this->m != other.m){
-        throw "Cannot add matrices of different sizes";
-    }
-    for(int i = 0; i < this->n; ++i){
-        for(int j = 0; j < this->m; ++j){
-            this->data[i][j] += other.data[i][j];
-        }
-    }
+    *this = *this + other;
     return *this;
 }
 
@@ -143,14 +136,7 @@ Matrix<T> Matrix<T>::operator- (const Matrix<T>& other){
  */
 template <class T>
 Matrix<T>& Matrix<T>::operator-= (const Matrix<T>& other){
-    if(this->n != other.n || this->m != other.m){
-        throw "Cannot add matrices of different sizes";
-    }
-    for(int i = 0; i < this->n; ++i){
-        for(int j = 0; j < this->m; ++j){
-            this->data[i][j] -= other.data[i][j];
-        }
-    }
+    *this = *this - other;
     return *this;
 }
 

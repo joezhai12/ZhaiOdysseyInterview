@@ -37,7 +37,6 @@ void Test_Addition(){
         std::cout << "Addition Test Failed!" << std::endl;
         ++fails;
     }
-
 }
 
 int main(){
