@@ -13,14 +13,14 @@ void Test_Addition(const size_t ROWS, const size_t COLS){
     //populate m1
     for(int i = 1; i <= ROWS; ++i){
         for(int j = 1; j <= COLS; ++j){
-            m1(i,j) = (i-1) * ROWS + j;
+            m1(i,j) = (i-1) * COLS + j;
         }
     }
     // std::cout << m1 << std::endl;
     //populate m2
     for(int i = 1; i <= ROWS; ++i){
         for(int j = 1; j <= COLS; ++j){
-            m2(i,j) = -((i-1) * ROWS + j);
+            m2(i,j) = -((i-1) * COLS + j);
         }
     }
     // std::cout << m2 << std::endl;
@@ -43,7 +43,7 @@ void Test_Subtraction(const size_t ROWS, const size_t COLS){
     //populate m1
     for(int i = 1; i <= ROWS; ++i){
         for(int j = 1; j <= COLS; ++j){
-            m1(i,j) = (i-1) * ROWS + j;
+            m1(i,j) = (i-1) * COLS + j;
         }
     }
     // std::cout << m1 << std::endl;
@@ -62,6 +62,48 @@ void Test_Subtraction(const size_t ROWS, const size_t COLS){
     }
 }
 
+void Test_Multiplication(){
+    const int N = 3;
+    const int M = 4;
+    const int P = 2;
+
+    Matrix<float> m1(N,M);
+    Matrix<float> m2(M,P);
+    Matrix<float> m3(N,P);
+    // populate m1
+    for(int i = 1; i <= N; ++i){
+        for(int j = 1; j <= M; ++j){
+            m1(i,j) = (i-1) * M + j + 0.5;
+        }
+    }
+    std::cout << m1 << std::endl;
+    // populate m2
+    for(int i = 1; i <= M; ++i){
+        for(int j = 1; j <= P; ++j){
+            m2(i,j) = (i-1) * P + j + 0.5;
+        }
+    }
+    std::cout << m2 << std::endl;
+
+    m3(1,1) = 64.0;
+    m3(1,2) = 76.0;
+    m3(2,1) = 136.0;
+    m3(2,2) = 164.0;
+    m3(3,1) = 208.0;
+    m3(3,2) = 252.0;
+
+    std::cout << m3 << std::endl;
+    std::cout << (m1 * m2) << std::endl;
+
+    if(m3 == (m1 * m2)){
+        ++passes;
+    }
+    else{
+        std::cout << "Multiplication Test Failed!" << std::endl;
+        ++fails;
+    }
+}
+
 int main(){
     std::srand(time(NULL));
     std::cout << "Testing..." << std::endl;
@@ -70,6 +112,7 @@ int main(){
     Test_Addition(0,0);
     Test_Subtraction(7,6);
     Test_Subtraction(0,0);
+    Test_Multiplication();
 
     std::cout << "Total Tests Passed: " << passes << std::endl;
     std::cout << "Total Tests Failed: " << fails << std::endl;

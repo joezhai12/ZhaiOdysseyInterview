@@ -174,7 +174,7 @@ Matrix<T> Matrix<T>::operator* (const Matrix<T>& other){
     Matrix<T> res(this->n, other.m);
     for(int i = 0; i < this->n; ++i){
         for(int j = 0; j < other.m; ++j){
-            int el = 0;
+            T el = 0;
             for(int k = 0; k < this->m; ++k){
                 el += (this->data[i][k] * other.data[k][j]);
             }
