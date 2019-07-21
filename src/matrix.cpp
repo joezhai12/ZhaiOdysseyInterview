@@ -13,7 +13,6 @@ Matrix<T>::Matrix():
     n(0),
     m(0)
 {
-    std::cout << "Created Matrix" << std::endl;
 }
 
 /*
@@ -24,7 +23,6 @@ Matrix<T>::Matrix(size_t rows, size_t cols):
     n(rows),
     m(cols)
 {
-    std::cout << "Created Matrix" << std::endl;
     for(int i = 0; i < n; ++i){
         std::vector<T> v;
         for(int j = 0; j < m; ++j){
@@ -39,7 +37,6 @@ Matrix<T>::Matrix(size_t rows, size_t cols):
  */
 template <class T>
 Matrix<T>::~Matrix(){
-    std::cout << "Destroying Matrix" << std::endl;
 }
 
 /*
@@ -178,6 +175,25 @@ Matrix<T> Matrix<T>::operator* (const Matrix<T>& other){
     }
     return res;
 }
+
+/*
+ * Tranpose Matrix
+ */
+template <class T>
+Matrix<T>& Matrix<T>::Transpose(){
+    Matrix<T> res(this->m, this->n);
+    // std::cout << "Debug" << std::endl;
+    for(int i = 0; i < this->n; ++i){
+        // std::cout << "Debug2" << std::endl;
+        for(int j = 0; j < this->m; ++j){
+            // std::cout << "Debug3" << std::endl;
+            res.data[j][i] = this->data[i][j];
+        }
+    }
+    *this = res;
+    return *this;
+}
+
 
 /*
  * Size

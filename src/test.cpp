@@ -3,6 +3,14 @@
 #include <time.h>
 #include <stdlib.h>
 
+// template <class T>
+// bool CheckValue(const Matrix<T>& a, const Matrix<T>& b){
+//     if(a == b){
+//         return true;
+//     }
+//     return false;
+// }
+
 int main(){
     std::srand(time(NULL));
 
@@ -56,6 +64,10 @@ int main(){
 
     std::cout << m5 << std::endl;
     std::cout << (m5 - m3) << std::endl;
+
+    m5.Transpose();
+
+    std::cout << m5 << std::endl;
 
     return 0;
 }

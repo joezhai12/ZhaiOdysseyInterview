@@ -18,6 +18,7 @@ public:
     Matrix(const Matrix<T>& other);
 
     // operator()
+    // used to access element (i,j) of matrix
     // NOTE: return indexed by 1 (REQ)
     T& operator() (size_t i, size_t j);
 
@@ -37,6 +38,9 @@ public:
 
     // matrix multiplication
     Matrix<T> operator* (const Matrix<T>& other);
+
+    // transpose matrix
+    Matrix<T>& Transpose();
 
     friend std::ostream& operator<< (std::ostream& os, const Matrix& mat){
         for(int i = 0; i < mat.n; ++i){
