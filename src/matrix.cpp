@@ -23,6 +23,11 @@ Matrix<T>::Matrix(size_t rows, size_t cols):
     n(rows),
     m(cols)
 {
+    if((rows == 0 && cols != 0) ||
+        (cols == 0 && rows != 0)){
+        
+        throw "Invalid number of rows or columns";
+    }
     for(int i = 0; i < n; ++i){
         std::vector<T> v;
         for(int j = 0; j < m; ++j){

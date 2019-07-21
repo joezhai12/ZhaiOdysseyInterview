@@ -62,7 +62,7 @@ void Test_Subtraction(const size_t ROWS, const size_t COLS){
     }
 }
 
-void Test_Multiplication(){
+void Test_Matrix_Multiplication(){
     const int N = 3;
     const int M = 4;
     const int P = 2;
@@ -76,14 +76,14 @@ void Test_Multiplication(){
             m1(i,j) = (i-1) * M + j + 0.5;
         }
     }
-    std::cout << m1 << std::endl;
+    // std::cout << m1 << std::endl;
     // populate m2
     for(int i = 1; i <= M; ++i){
         for(int j = 1; j <= P; ++j){
             m2(i,j) = (i-1) * P + j + 0.5;
         }
     }
-    std::cout << m2 << std::endl;
+    // std::cout << m2 << std::endl;
 
     m3(1,1) = 64.0;
     m3(1,2) = 76.0;
@@ -92,27 +92,55 @@ void Test_Multiplication(){
     m3(3,1) = 208.0;
     m3(3,2) = 252.0;
 
-    std::cout << m3 << std::endl;
-    std::cout << (m1 * m2) << std::endl;
+    // std::cout << m3 << std::endl;
+    // std::cout << (m1 * m2) << std::endl;
 
     if(m3 == (m1 * m2)){
         ++passes;
     }
     else{
-        std::cout << "Multiplication Test Failed!" << std::endl;
+        std::cout << "Matrix Multiplication Test Failed!" << std::endl;
+        ++fails;
+    }
+}
+
+void Test_Scalar_Multiplication(const size_t ROWS, const size_t COLS){
+    Matrix<long> m1(ROWS, COLS);
+    Matrix<long> ans(ROWS, COLS);
+    const long SCALAR = 6;
+    
+    //populate m1
+    for(int i = 1; i <= ROWS; ++i){
+        for(int j = 1; j <= COLS; ++j){
+            m1(i,j) = (i-1) * COLS + j;
+        }
+    }
+    //populate ans
+    for(int i = 1; i <= ROWS; ++i){
+        for(int j = 1; j <= COLS; ++j){
+            ans(i,j) = ((i-1) * COLS + j) * SCALAR;
+        }
+    }
+
+    if((SCALAR * m1 == ans) && (m1 * SCALAR == ans)){
+        ++passes;
+    }
+    else{
+        std::cout << "Scalar Multiplication Test Failed!" << std::endl;
         ++fails;
     }
 }
 
 int main(){
-    std::srand(time(NULL));
     std::cout << "Testing..." << std::endl;
 
     Test_Addition(3,4);
     Test_Addition(0,0);
     Test_Subtraction(7,6);
     Test_Subtraction(0,0);
-    Test_Multiplication();
+    Test_Matrix_Multiplication();
+    Test_Scalar_Multiplication(4,5);
+    Test_Scalar_Multiplication(0,0);
 
     std::cout << "Total Tests Passed: " << passes << std::endl;
     std::cout << "Total Tests Failed: " << fails << std::endl;
