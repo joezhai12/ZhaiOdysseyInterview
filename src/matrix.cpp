@@ -70,9 +70,9 @@ T& Matrix<T>::operator() (size_t i, size_t j){
  */
 template <class T>
 Matrix<T> Matrix<T>::operator+ (const Matrix<T>& other){
-    // if(this->size() != other.size()){
-    //     throw "Cannot add matrices of different sizes";
-    // }
+    if(this->n != other.n || this->m != other.m){
+        throw "Cannot add matrices of different sizes";
+    }
     Matrix<T> res(this->n, this->m);
     for(int i = 0; i < this->n; ++i){
         for(int j = 0; j < this->m; ++j){
@@ -87,12 +87,63 @@ Matrix<T> Matrix<T>::operator+ (const Matrix<T>& other){
  */
 template <class T>
 Matrix<T>& Matrix<T>::operator+= (const Matrix<T>& other){
+    if(this->n != other.n || this->m != other.m){
+        throw "Cannot add matrices of different sizes";
+    }
     for(int i = 0; i < this->n; ++i){
         for(int j = 0; j < this->m; ++j){
             this->data[i][j] += other.data[i][j];
         }
     }
     return *this;
+}
+
+/*
+ * Operator * (Scalar)
+ */
+template <class T>
+Matrix<T> Matrix<T>::operator* (const T& scalar){
+    Matrix<T> res(this->n, this->m);
+    for(int i = 0; i < res.n; ++i){
+        for(int j = 0; j < res.m; ++j){
+            res.data[i][j] = this->data[i][j] * scalar;
+        }
+    }
+    return res;
+}
+
+/*
+ * Operator *= (Scalar)
+ */
+template <class T>
+Matrix<T>& Matrix<T>::operator*= (const T& scalar){
+    for(int i = 0; i < this->n; ++i){
+        for(int j = 0; j < this->m; ++j){
+            this->data[i][j] *= scalar;
+        }
+    }
+    return (*this);
+}
+
+/*
+ * Operator * (Matrix)
+ */
+template <class T>
+Matrix<T> Matrix<T>::operator* (const Matrix<T>& other){
+    if(this->m != other.n){
+        throw "Cannot multiply matrices with mismatched inner dimensions";
+    }
+    Matrix<T> res(this->n, other.m);
+    for(int i = 0; i < this->n; ++i){
+        for(int j = 0; j < other.m; ++j){
+            int el = 0;
+            for(int k = 0; k < this->m; ++k){
+                el += (this->data[i][k] * other.data[k][j]);
+            }
+            res.data[i][j] = el;
+        }
+    }
+    return res;
 }
 
 /*

@@ -26,10 +26,18 @@ public:
     Matrix<T>& operator+= (const Matrix<T>& other);
     // Matrix operator - (const Matrix<T>& other);
 
-    // // multiplication
-    // Matrix operator * (const Matrix<T>& other);
+    // scalar multiplication
+    Matrix<T> operator* (const T& scalar);
+    Matrix<T>& operator*= (const T& scalar);
+    // allow commutative scalar mult.
+    friend Matrix<T> operator* (const T& scalar, Matrix<T>& mat){
+        return (mat * scalar);
+    };
 
-    friend std::ostream& operator<< (std::ostream& os, Matrix& mat){
+    // matrix multiplication
+    Matrix<T> operator* (const Matrix<T>& other);
+
+    friend std::ostream& operator<< (std::ostream& os, const Matrix& mat){
         for(int i = 0; i < mat.n; ++i){
             for(int j = 0; j < mat.m; ++j){
                 os << mat.data[i][j] << "\t";
