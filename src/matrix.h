@@ -23,6 +23,7 @@ public:
 
     // addition
     Matrix<T> operator+ (const Matrix<T>& other);
+    Matrix<T>& operator+= (const Matrix<T>& other);
     // Matrix operator - (const Matrix<T>& other);
 
     // // multiplication

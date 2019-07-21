@@ -83,6 +83,19 @@ Matrix<T> Matrix<T>::operator+ (const Matrix<T>& other){
 }
 
 /*
+ * Operator+=
+ */
+template <class T>
+Matrix<T>& Matrix<T>::operator+= (const Matrix<T>& other){
+    for(int i = 0; i < this->n; ++i){
+        for(int j = 0; j < this->m; ++j){
+            this->data[i][j] += other.data[i][j];
+        }
+    }
+    return *this;
+}
+
+/*
  * Size
  */
 template <class T>

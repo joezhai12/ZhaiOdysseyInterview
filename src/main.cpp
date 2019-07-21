@@ -22,5 +22,9 @@ int main(){
     std::cout << "m + m2 = " << std::endl;
     std::cout << m << std::endl;
 
+    m += m2;
+    std::cout << "m += m2 " << std::endl;
+    std::cout << m << std::endl;
+
     return 0;
 }
