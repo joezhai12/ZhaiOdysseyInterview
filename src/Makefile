@@ -1,11 +1,11 @@
 CXX = g++
 CXXFLAGS = -Wall -g -std=c++17
 
-all : main.o matrix.o
-		$(CXX) $(CXXFLAGS) -o main main.o matrix.o
+all : test.o matrix.o
+		$(CXX) $(CXXFLAGS) -o test test.o matrix.o
 
-main.o : main.cpp matrix.h
-			$(CXX) $(CXXFLAGS) -c main.cpp
+test.o : test.cpp matrix.h
+			$(CXX) $(CXXFLAGS) -c test.cpp
 
 matrix.o : matrix.h
 
@@ -13,4 +13,4 @@ matrix.o : matrix.h
 # 					cc -c matrix.test.cpp
 
 clean : 
-	rm main *.o
+	rm test *.o
